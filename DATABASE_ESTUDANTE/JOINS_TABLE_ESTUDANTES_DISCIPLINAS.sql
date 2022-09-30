@@ -51,3 +51,25 @@ FROM Estudante_Dados E
 ---> TRAS TODAS AS LIGACOES POSSIVELS DE TODOS
 CROSS JOIN Disciplina_Dados as D 
 
+--------------------------------------------------------------------------------------
+---> Nome Aluno, Sobrenome, Disciplina, Duração, Nota
+SELECT E.Estudante_Nome, 
+	   E.Estudante_Sobrenome, 
+	   DI.Disciplina_Nome, 
+	   D.Desempenho_Nota 
+FROM Desempenho_Dados as D
+INNER JOIN Estudante_Dados as E on (D.Estudante_ID = E.Estudante_ID)
+INNER JOIN Disciplina_Dados as DI ON (E.Estudante_ID = DI.Estudante_ID)
+
+---------------------------------------------------------------------------------------
+
+SELECT e.Estudante_Nome, 
+	   d.Disciplina_Nome, 
+       de.Desempenho_Nota
+FROM Estudante_Dados E
+INNER JOIN Disciplina_Dados as D ON ( e.Estudante_ID = d.Estudante_ID)
+INNER JOIN Desempenho_Dados  AS DE ON (d.Disciplina_ID = de.Disciplina_ID)
+
+SELECT * FROM Estudante_Dados
+SELECT * FROM Disciplina_Dados
+SELECT * FROM Desempenho_Dados
