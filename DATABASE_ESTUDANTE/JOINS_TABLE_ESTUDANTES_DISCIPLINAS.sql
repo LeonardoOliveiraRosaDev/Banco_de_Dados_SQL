@@ -64,11 +64,11 @@ INNER JOIN Disciplina_Dados as DI ON (E.Estudante_ID = DI.Estudante_ID)
 ---------------------------------------------------------------------------------------
 
 SELECT e.Estudante_Nome, 
-	   d.Disciplina_Nome, 
-       de.Desempenho_Nota
+	   d.Disciplina_Nome
+      -- de.Desempenho_Nota
 FROM Estudante_Dados E
 INNER JOIN Disciplina_Dados as D ON ( e.Estudante_ID = d.Estudante_ID)
-INNER JOIN Desempenho_Dados  AS DE ON (d.Disciplina_ID = de.Disciplina_ID)
+--INNER JOIN Desempenho_Dados  AS DE ON (d.Disciplina_ID = de.Disciplina_ID)
 
 SELECT * FROM Estudante_Dados
 SELECT * FROM Disciplina_Dados
