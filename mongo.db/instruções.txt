@@ -1,0 +1,65 @@
+//INSTRUCAO PARA CRIAR O DB
+>use DBColaboradores
+
+//Visualizar os DBs
+> show databases
+
+//instrução insert
+>db.ColecColab.insert({ IDColab: 8, NomeColab: 9 })
+
+//inserir varios dados ao mesmo tempo
+>var dadosColab = [{IDColab: 2, NomeColab: 'Anderson'},{IDColab: 3, NomeColab: 'Eduardo' },{IDColab: 4, NomeColab: 'Kauane'},{IDColab: 5, NomeColab: 'Luiz'},{IDColab:6, NomeColab: 'Nicario'}]
+db.ColecColab.insert(dadosColab)
+
+//busca e seleção dentro da collection MongoDB
+db.ColecColab.find()
+db.ColecColab.find().forEach(printjson)
+db.ColecColab.find({ NomeColab: 'Anderson'}).forEach(printjson)
+
+//Operadores de relação/comparação para busca parametrizada
+db.ColecColab.find({ IDColab: {$gt:2}}).forEach(printjson)
+db.ColecColab.find({ IDColab: {$lt:2}}).forEach(printjson)
+db.ColecColab.find({ NomeColab: {$eq:'Eduardo'}}).forEach(printjson)
+db.ColecColab.find({IDColab :{$gte: 3}}).pretty()
+db.ColecColab.find({IDColab :{$lte: 3}}).pretty()
+
+//Operadores lógicos para busca parametrizada
+db.ColecColab.find({$and:[{IDColab: {$gte:2}} , {IDColab: {$lte:5}}]}).pretty()
+db.ColecColab.find({$or: [{NomeColab: 'Kauane'},{NomeColab: 'Luiz'}]}).pretty()
+db.ColecColab.find({IDColab: {$not : {$gte: 3}}}).pretty()
+db.ColecColab.find({IDColab: {$not : {$lte : 3}}}).pretty()
+
+//usar operadores de elementos/identidade para busca parametrizada
+db.ColecColab.find({NomeColab: {$exists: true}}).pretty()
+db.ColecColab.find({ IDColab: {$exists: true, $lte:3}}).pretty()
+
+db.ColecColab.find({ NomeColab: {$type: 'number'}}).pretty()
+db.ColecColab.find({ NomeColab: {$type: 'string'}}).pretty()
+
+//A criação de uma variavel que recebe com valor uma consulta e é manipulada.
+var muitosDados = db.ColecColab.find({IDColab: {$gte: 1}})
+while(muitosDados.hasNext()){ print(tojson(muitosDados.next()))}
+
+
+//uso do operador limit()
+
+db.ColecColab.find().limit(2).pretty()
+db.ColecColab.find().sort({ IDColab: -1 }).pretty()
+db.ColecColab.find().limit(3).sort({IDColab: -1}).pretty()
+
+
+//operador count()
+db.ColecColab.count()
+
+//operador remove()
+db.ColecColab.remove({ _id: 10 })
+
+//operador update()
+db.ColecColab.update({IDColab: 4}, {$set: {NomeColab: 'Kauane Antonini'}})
+
+ db.ColecColab.update(
+...                     {IDColab: 2},
+...                     {$set: {NomeColab: 'Leonardo',IDColab: 103}}                    
+...                   )
+
+

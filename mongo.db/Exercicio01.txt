@@ -1,0 +1,37 @@
+- exercicio MongoDB: criar uma nova base de dados: DBNovo
+	use DBNovo
+
+-inserir uma nova collection : NovaColec
+-inserir um conjunto de um total de 5 documentos composto com os 
+seguintes elementos de key: 
+              - IDNovoMembro
+              - NomeNovoMembro
+              - SobrenomeNovoMembro
+              - IdadeNovoMembro
+
+ db.NovaColec.insert({IDNovoMembro: 1, NomeNovoMembro: 'Leonardo', SobrenomeNovoMembro: 'Oliveira', IdadeNovoMembro: 41})
+ db.NovaColec.insert({IDNovoMembro: 2, NomeNovoMembro: 'Nicario', SobrenomeNovoMembro: 'Laube', IdadeNovoMembro: 28})
+ db.NovaColec.insert({IDNovoMembro: 3, NomeNovoMembro: 'Kauane', SobrenomeNovoMembro: 'Antonini', IdadeNovoMembro:27})
+ db.NovaColec.insert({IDNovoMembro: 4, NomeNovoMembro: 'Luiz', SobrenomeNovoMembro: 'Rabelo', IdadeNovoMembro: 50})
+ db.NovaColec.insert({IDNovoMembro: 5, NomeNovoMembro: 'Eduardo', SobrenomeNovoMembro: 'Yoshikawa', IdadeNovoMembro: 50})
+
+
+
+-executar buscas com:
+-  uma busca generalizada 
+       db.NovaColec.find().pretty()
+-  uma busca com valor >= a um parametro
+	db.NovaColec.find({ IDNovoMembro: {$gte: 4}}).pretty()
+-  uma busca com valor <= a um parametro
+	db.NovaColec.find({ IDNovoMembro: {$lte: 3}}).pretty()
+-  uma busca com intervalo de valores
+	 db.NovaColec.find({$and: [{IDNovoMembro: {$gte: 2}} , {IDNovoMembro: {$lte: 5}}]}).pretty()
+-  uma busca com o metodo update,
+	db.NovaColec.update({IDNovoMembro: 5} , {$set: {IdadeNovoMembro: 49}})
+-  uma com limit
+	db.NovaColec.find().limit(2).pretty()
+-  e uma com sort.
+	db.NovaColec.find().sort({ IDNovoMembro: 1}).pretty()
+-  uma busca com o metodo remove()
+	db.NovaColec.remove({ IDNovoMembro: 5})
+
